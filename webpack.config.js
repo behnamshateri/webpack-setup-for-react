@@ -7,7 +7,6 @@ const webpack = require('webpack');
 
 
 module.exports = (env) => {
-    console.log(process.env.NODE_ENV);
     return {
         entry: "./src/index.js",
         output: {
@@ -41,28 +40,20 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg)$/,
-                    loader: 'url-loader',
+                    loader: 'file-loader',
                     options: {
                         name(file) {
                             if (env.ENVIRONMENT === 'development') {
                                 return '[path][name].[ext]';
                             }
-                            return '[hash].[ext]';
+                            return '[path][hash].[ext]';
                         },
                     },
                 },
                 {
-                    test: /\.svg$/,
+                    test: /\.(eot|woff|woff2|ttf)$/,
                     loaders: [
-                        {
-                            loader: 'svg-inline-loader'
-                        }
-                    ]
-                },
-                {
-                    test: /\.(gif|eot|woff|woff2|ttf|svg)$/,
-                    loaders: [
-                        'file-loader'
+                        'url-loader'
                     ]
                 }
             ]
