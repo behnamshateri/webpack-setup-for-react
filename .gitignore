@@ -6,7 +6,7 @@
 # testing
 /coverage
 
-# production
+# Production
 /build
 
 # misc
@@ -25,3 +25,7 @@ yarn-error.log*
 
 # webpack compiling folder
 /dist
+
+
+# Todo note
+Todo.txt

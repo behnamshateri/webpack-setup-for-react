@@ -1,12 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const webpack = require('webpack');
 
 
 module.exports = (env) => {
+    console.log(process.env.NODE_ENV);
     return {
         entry: "./src/index.js",
         output: {
@@ -39,11 +40,11 @@ module.exports = (env) => {
                     ]
                 },
                 {
-                    test: /\.(png|jpe?g|gif)$/,
+                    test: /\.(png|jpe?g|gif|svg)$/,
                     loader: 'url-loader',
                     options: {
                         name(file) {
-                            if (process.env.NODE_ENV === 'development') {
+                            if (env.ENVIRONMENT === 'development') {
                                 return '[path][name].[ext]';
                             }
                             return '[hash].[ext]';
@@ -89,10 +90,8 @@ module.exports = (env) => {
         ],
         optimization: {
             minimizer: [
-                new UglifyJsPlugin({
-                    cache: true,
-                    parallel: true,
-                    sourceMap: true // set to true if you want JS source maps
+                new TerserPlugin({
+                    test: /\.js(\?.*)?$/i,
                 }),
                 new OptimizeCSSAssetsPlugin({})
             ]

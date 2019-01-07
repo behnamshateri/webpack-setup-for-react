@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --env.DASH_URL_WEB=https://www.google.com --mode=development --open --hot",
-    "start-local": "webpack-dev-server --env.DASH_URL_WEB=https://www.google.com --mode=development --open --hot",
-    "build": "webpack --mode=production --env.DASH_URL_WEB=https://www.google.com"
+    "start": "webpack-dev-server --env.DASH_URL_WEB=https://www.google.com --env.ENVIRONMENT=development --mode=development --open --hot",
+    "start-local": "webpack-dev-server --env.DASH_URL_WEB=https://www.google.com --env.ENVIRONMENT=development --mode=development --open --hot",
+    "build": "webpack --env.ENVIRONMENT=production --mode=production --env.DASH_URL_WEB=https://www.google.com"
   },
   "keywords": [],
   "author": "",
@@ -30,7 +30,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
-    "uglifyjs-webpack-plugin": "^2.1.1",
+    "terser-webpack-plugin": "^1.2.1",
     "url-loader": "^1.1.2",
     "webpack": "^4.28.3",
     "webpack-cli": "^3.2.0",
